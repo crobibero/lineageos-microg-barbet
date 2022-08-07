@@ -30,9 +30,10 @@ NominatimNlpBackend
 - open google maps once, grant it location permissions. Just while in use is fine.
 - android auto *should* just work now
 
-if you get stuck on google maps permission, try pressing cancel instead of settings.
-
-if you are having trouble with first time setup, I found it was helpful to setup the bluetooth connection to the car before plugging in the usb c.
+## troubleshooting
+- if you get stuck on google maps permission, try pressing cancel instead of settings.
+- if you are having trouble with first time setup, I found it was helpful to setup the bluetooth connection to the car before plugging in the usb c.
+- Also try manually granting permissions to the Android Auto app
 
 ## Prepare the build environment
 
