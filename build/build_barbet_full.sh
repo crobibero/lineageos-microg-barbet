@@ -13,7 +13,6 @@ docker run \
        -e "SIGNATURE_SPOOFING=yes" \
        -e "CUSTOM_PACKAGES=GmsCore GsfProxy FakeStore FDroid FDroidPrivilegedExtension AndroidAuto gappsstub speechservicestub auroraservices" \
        -e "WITH_GMS=true" \
-       -e "PARALLEL_JOBS=2" \
        -v "$PWD/src:/srv/src" \
        -v "$PWD/zips:/srv/zips" \
        -v "$PWD/logs:/srv/logs" \

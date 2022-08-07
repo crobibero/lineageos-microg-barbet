@@ -1,0 +1,41 @@
+From df3ac205ee148fc9191f735ab968ff4632910b0a Mon Sep 17 00:00:00 2001
+From: Dylanger Daly <dylanger@diagnostix.io>
+Date: Wed, 6 Apr 2022 11:58:34 +1000
+Subject: [PATCH] All packages installed via Google Play Store
+
+---
+ core/java/android/app/ApplicationPackageManager.java          | 3 +++
+ .../java/com/android/server/pm/PackageManagerService.java     | 4 ++++
+ 2 files changed, 7 insertions(+)
+
+diff --git a/core/java/android/app/ApplicationPackageManager.java b/core/java/android/app/ApplicationPackageManager.java
+index 71de650d7b67e2..2bd05a8e4e61ad 100644
+--- a/core/java/android/app/ApplicationPackageManager.java
++++ b/core/java/android/app/ApplicationPackageManager.java
+@@ -2292,6 +2292,9 @@ public class ApplicationPackageManager extends PackageManager {
+     @Override
+     public String getInstallerPackageName(String packageName) {
+         try {
++            if (!packageName.equals("com.aurora.store") && packageName != null) {
++                return "com.android.vending";
++            }
+             return mPM.getInstallerPackageName(packageName);
+         } catch (RemoteException e) {
+             throw e.rethrowFromSystemServer();
+diff --git a/services/core/java/com/android/server/pm/PackageManagerService.java b/services/core/java/com/android/server/pm/PackageManagerService.java
+index 7dc743d84e4d46..dbdd357132c83e 100644
+--- a/services/core/java/com/android/server/pm/PackageManagerService.java
++++ b/services/core/java/com/android/server/pm/PackageManagerService.java
+@@ -24382,6 +24382,10 @@ public class PackageManagerService extends IPackageManager.Stub
+                 }
+             }
+ 
++            if (!packageName.equals("com.aurora.store") && installerPackageName != null) {
++                installerPackageName = "com.android.vending";
++            }
++
+             if (installSource.isInitiatingPackageUninstalled) {
+                 // We can't check visibility in the usual way, since the initiating package is no
+                 // longer present. So we apply simpler rules to whether to expose the info:
+-- 
+2.35.3
